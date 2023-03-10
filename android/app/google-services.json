@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "693004328653",
+    "project_id": "proyecto-flutter-escuela",
+    "storage_bucket": "proyecto-flutter-escuela.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693004328653:android:33fa13f7c1e99e68209384",
+        "android_client_info": {
+          "package_name": "com.example.aves_dgo_nuevo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "693004328653-ronf67m1bjn5v5bdipj43flvsjlf5dc1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC90DYnQyEAjBplZz4oIwjL9G1TLlA8KdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "693004328653-ronf67m1bjn5v5bdipj43flvsjlf5dc1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
