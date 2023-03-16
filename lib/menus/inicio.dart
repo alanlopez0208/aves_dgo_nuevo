@@ -1,3 +1,5 @@
+import 'package:aves_dgo_nuevo/menus/listadatos.dart';
+import 'package:aves_dgo_nuevo/paginas/fotos.dart';
 import 'package:aves_dgo_nuevo/paginas/splashscreen.dart';
 import 'package:flutter/material.dart';
 
@@ -11,8 +13,8 @@ class Inicio extends StatefulWidget {
 class MiInicio extends State <Inicio> {
   int _selectedIndex = 0;
   final List <Widget> _children = [
-    SplashScreen(),
-    SplashScreen(),
+    ListaDatos(),
+    Fotos(),
   ];
   void _onItemTapped(int index) {
     setState(() {

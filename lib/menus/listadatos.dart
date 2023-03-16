@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +11,7 @@ class ListaDatos extends StatelessWidget {
           title: Text('Aves Durango'),
         ),
         body: StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance.collection('uidatos').snapshots(),
+            stream: FirebaseFirestore.instance.collection('aves').snapshots(),
             builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot) {
               if (!snapshot.hasData) {
                 return Center(
@@ -40,16 +39,6 @@ class ListaDatos extends StatelessWidget {
                       ],
                     ),
                   );
-                  /*return ListTile(
-                    title: Text("Nombre común: "+data['nombrecom']),
-                    subtitle: Text("Nombre científico: "+data['nombrecie']+"\n"+
-                        "Fotografiada por: "+data['nombrecrd']),
-                    leading: Image(
-                      image: NetworkImage(data['foto']),
-                      fit: BoxFit.fitHeight,
-                      width: 50,
-                    ),
-                  );*/
                 }).toList(),
               );
             }
