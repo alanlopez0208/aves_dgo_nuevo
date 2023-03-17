@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ListaDatos extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,5 +45,6 @@ class ListaDatos extends StatelessWidget {
             }
         )
     );
+
   }
 }

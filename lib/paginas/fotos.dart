@@ -14,12 +14,14 @@ class Fotos extends StatefulWidget{
 }
 
 class MisFotos extends State<Fotos>{
-  final picker = ImagePicker();
+  final picker = ImagePicker();//ImagePicker la ventana para abrir para seleccionar la imagen
   File? imageFile;
   String reffoto="";
   String nomfoto="";
 
-  Datos? dat=Datos("","","","");
+  //Llamamos al constructor de datos para agregarlo despues
+  Datos? dat= Datos("","","","");
+
 
   Future<void> showSelectionDialog(BuildContext context){
     return showDialog(
@@ -28,6 +30,7 @@ class MisFotos extends State<Fotos>{
           return AlertDialog(
             title: Text("Seleccione opcion para foto"),
             content: SingleChildScrollView(
+              //ListBody es oara elementos cortos y que no van a crecer.
               child: ListBody(
                 children:<Widget> [
                   GestureDetector(
@@ -51,13 +54,15 @@ class MisFotos extends State<Fotos>{
     );
   }
 
-  void abrirGaleria(BuildContext context) async{
+  void abrirGaleria(BuildContext context) async{//Siempre que se utilza un metodo async se utiliza un await cuando se crea un objerto
     final picture =await picker.pickImage(source: ImageSource.gallery);
     this.setState(() {
-      imageFile=File(picture!.path);
+      //Como aqui se esutilizado un objeto de tipo final siempre se tiene que usar el signo de admiracion
+      imageFile = File(picture!.path);
       Navigator.of(context).pop();
     });
   }
+
   void abrirCamara(BuildContext context) async{
     final picture =await picker.pickImage(source: ImageSource.camera);
     this.setState(() {
@@ -67,22 +72,26 @@ class MisFotos extends State<Fotos>{
   }
 
   void enviarImagen() async{
+    //Solo se llama a la clase a travez de un alias
     firebase_storage.FirebaseStorage.instance
         .ref(reffoto+'.jpg')
         .putFile(imageFile!);
     print("Enviada________");
   }
+
   Future<void> visualizafoto() async{
+
     Future.delayed(Duration(seconds:7), () async{
-      String urll=await
-      firebase_storage.FirebaseStorage.instance.ref(reffoto+".jpg").getDownloadURL();
+      String urll = await firebase_storage.FirebaseStorage.instance.ref(reffoto+".jpg").getDownloadURL();
       Datos.downloadURL = urll.toString();
+
       print("----------->"+Datos.downloadURL);
     });
+
   }
 
   Widget mostrarImagen(){
-    if(imageFile!=null){
+    if(imageFile != null){
       return Image.file(imageFile!, width: 500, height: 500,);
     }else{
       return Text("Seleccione un imagen");
@@ -101,8 +110,8 @@ class MisFotos extends State<Fotos>{
             IconButton(
               icon: Icon(Icons.send_and_archive),
               onPressed: (){
-                nomfoto=(DateFormat.yMd().add_Hms().format(DateTime.now())).toString();
-                reffoto="uidgo/"+(nomfoto.replaceAll("/", "").replaceAll(" ","").replaceAll(":", ""));
+                nomfoto = (DateFormat.yMd().add_Hms().format(DateTime.now())).toString();
+                reffoto = "uidgo/"+(nomfoto.replaceAll("/", "_").replaceAll(" ","_").replaceAll(":", "_"));
                 enviarImagen();
                 print("---------------"+nomfoto);
                 print("---------------"+reffoto);
