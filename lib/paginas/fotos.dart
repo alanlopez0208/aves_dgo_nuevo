@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:aves_dgo_nuevo/paginas/datos.dart';
+import 'package:aves_dgo_nuevo/paginas/formulario.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:image_picker/image_picker.dart';
@@ -80,7 +81,6 @@ class MisFotos extends State<Fotos>{
   }
 
   Future<void> visualizafoto() async{
-
     Future.delayed(Duration(seconds:7), () async{
       String urll = await firebase_storage.FirebaseStorage.instance.ref(reffoto+".jpg").getDownloadURL();
       Datos.downloadURL = urll.toString();
@@ -116,7 +116,9 @@ class MisFotos extends State<Fotos>{
                 print("---------------"+nomfoto);
                 print("---------------"+reffoto);
                 visualizafoto();
-                Navigator.of(context).pop();
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                  return Formulario();
+                }));
               },
             )
           ],
