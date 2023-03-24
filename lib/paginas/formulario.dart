@@ -16,6 +16,7 @@ class MiFormulario extends State<Formulario>{
   final controladorNombereCient = TextEditingController();
   final controladorId = TextEditingController();
   final controladorNombreAutor = TextEditingController();
+
   Datos? dat = Datos("", "", "", "");
 
   Future<void> guardarDatos(String nombre, String nombreCient, String nombreCreditos, String foto) async {
