@@ -15,7 +15,7 @@ class Fotos extends StatefulWidget{
 }
 
 class MisFotos extends State<Fotos>{
-  final picker = ImagePicker();//ImagePicker la ventana para abrir para seleccionar la imagen
+  final picker = ImagePicker(); //ImagePicker la ventana para abrir para seleccionar la imagen
   File? imageFile;
   String reffoto="";
   String nomfoto="";

@@ -3,15 +3,16 @@ import 'package:aves_dgo_nuevo/paginas/fotos.dart';
 import 'package:flutter/material.dart';
 
 class Inicio extends StatefulWidget {
+
   @override
   State<StatefulWidget> createState() {
     return MiInicio();
   }
 }
 
-class MiInicio extends State <Inicio> {
+class MiInicio extends State<Inicio> {
   int _selectedIndex = 0;
-  final List <Widget> _children = [
+  final List<Widget> _children = [
     ListaDatos(),
     Fotos(),
   ];
@@ -21,7 +22,7 @@ class MiInicio extends State <Inicio> {
       _selectedIndex = index;
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,15 +35,9 @@ class MiInicio extends State <Inicio> {
         backgroundColor: Colors.amber,
         selectedItemColor: Colors.grey,
         unselectedItemColor: Colors.black,
-        items: <BottomNavigationBarItem> [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Inicio'
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.camera_alt),
-              label: 'Fotos'
-          ),
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
+          BottomNavigationBarItem(icon: Icon(Icons.camera_alt), label: 'Fotos'),
         ],
       ),
     );

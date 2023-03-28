@@ -1,6 +1,6 @@
 import 'dart:core';
 
-class Datos{
+class Datos {
   late String nombreCom;
   late String nombreCien;
   late String nombreCrd;
