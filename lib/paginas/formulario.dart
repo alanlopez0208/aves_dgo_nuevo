@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:aves_dgo_nuevo/menus/inicio.dart';
 import 'package:aves_dgo_nuevo/paginas/datos.dart';
 import 'package:flutter/material.dart';
@@ -15,18 +16,19 @@ class MiFormulario extends State<Formulario> {
   final controladorNombereCient = TextEditingController();
   final controladorId = TextEditingController();
   final controladorNombreAutor = TextEditingController();
+  final CollectionReference datos =
+      FirebaseFirestore.instance.collection('aves');
 
   Datos? dat = Datos("", "", "", "");
 
   Future<void> guardarDatos(String nombre, String nombreCient,
       String nombreCreditos, String foto) async {
-    Future.delayed(Duration(seconds: 10), () async {
-      final datos = await FirebaseFirestore.instance.collection('aves');
+    Future.delayed(Duration(seconds: 10), () {
       return datos.add({
-        'nombreCom': nombre,
-        'nombrecient': nombreCient,
-        'nombreCreditos': nombreCreditos,
-        'fotos': foto
+        'nombrecom': nombre,
+        'nombrecie': nombreCient,
+        'nombrecrd': nombreCreditos,
+        'foto': foto
       });
     });
   }
@@ -41,7 +43,14 @@ class MiFormulario extends State<Formulario> {
       body: Container(
           child: SingleChildScrollView(
         child: Column(
-          children: [
+          children: <Widget>[
+            Padding(padding: EdgeInsets.all(10.00)),
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.amber,
+                  borderRadius: BorderRadius.circular(10.00)),
+              child: IconButton(onPressed: () {}, icon: Icon(Icons.image)),
+            ),
             Padding(padding: EdgeInsets.all(10.00)),
             TextField(
               controller: controladorNombreComun,
@@ -72,17 +81,23 @@ class MiFormulario extends State<Formulario> {
             Padding(padding: EdgeInsets.all(10.00)),
             ElevatedButton(
                 onPressed: () {
-                  dat!.nombreCien = controladorNombereCient.text;
-                  dat!.nombreCom = controladorNombreComun.text;
-                  dat!.nombreCrd = controladorNombereCient.text;
-                  dat!.foto = Datos.downloadURL;
-
-                  guardarDatos(dat!.nombreCien, dat!.nombreCom, dat!.nombreCrd,
-                      dat!.foto);
-                  Navigator.pushAndRemoveUntil(context,
-                      MaterialPageRoute(builder: (BuildContext context) {
-                    return Inicio();
-                  }), ModalRoute.withName('/'));
+                  if (validarNombre(controladorNombreComun.text) &&
+                      validarNombreCient(controladorNombereCient.text) &&
+                      (validarNombre(controladorNombreAutor.text)) &&
+                      Datos.downloadURL != null) {
+                    dat!.nombreCien = controladorNombereCient.text;
+                    dat!.nombreCom = controladorNombreComun.text;
+                    dat!.nombreCrd = controladorNombreAutor.text;
+                    dat!.foto = Datos.downloadURL;
+                    guardarDatos(dat!.nombreCien, dat!.nombreCom,
+                        dat!.nombreCrd, dat!.foto);
+                    Navigator.pushAndRemoveUntil(context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                      return Inicio();
+                    }), ModalRoute.withName('/'));
+                  }else{
+                    alertaNombre(context);
+                  }
                 },
                 child: Text('Registrar'))
           ],
@@ -90,4 +105,55 @@ class MiFormulario extends State<Formulario> {
       )),
     );
   }
+}
+
+bool validarNombre(String cadena) {
+  RegExp exp = new RegExp(r'^[a-zA-Z]+[. ]*[a-zA-Z]*$');
+  if (cadena.isEmpty) {
+    return false;
+  } else if (!exp.hasMatch(cadena)) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+bool validarNombreCient(String cadena) {
+  RegExp exp = new RegExp(r'^[a-zA-Z]+[. ]*[a-zA-Z]*$');
+  if (cadena.isEmpty) {
+    return false;
+  } else if (!exp.hasMatch(cadena)) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+bool validarId(String cadena) {
+  RegExp exp = new RegExp(r'^AV[a-zA-z]{1,4}\d{1,4}$');
+  if (cadena.isEmpty) {
+    return false;
+  } else if (!exp.hasMatch(cadena)) {
+    return false;
+  } else {
+    return true;
+  }
+}
+void alertaNombre(BuildContext context) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Alerta"),
+          content: Text("Hay alguna informacion Incorrecta",
+              style: TextStyle(fontFamily: "Arial", fontSize: 15)),
+          actions: <Widget>[
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("ok"))
+          ],
+        );
+      });
 }

@@ -30,6 +30,7 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 dependencies {
     // Import the Firebase BoM
     implementation platform('com.google.firebase:firebase-bom:31.2.3')
+    implementation "androidx.multidex:multidex:2.0.1"
 }
 
 android {
@@ -50,6 +51,7 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
     }
 
 }

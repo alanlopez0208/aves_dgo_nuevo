@@ -56,7 +56,7 @@ class MisFotos extends State<Fotos>{
   }
 
   void abrirGaleria(BuildContext context) async{//Siempre que se utilza un metodo async se utiliza un await cuando se crea un objerto
-    final picture =await picker.pickImage(source: ImageSource.gallery);
+    final picture = await picker.pickImage(source: ImageSource.gallery);
     this.setState(() {
       //Como aqui se esutilizado un objeto de tipo final siempre se tiene que usar el signo de admiracion
       imageFile = File(picture!.path);
@@ -67,7 +67,7 @@ class MisFotos extends State<Fotos>{
   void abrirCamara(BuildContext context) async{
     final picture =await picker.pickImage(source: ImageSource.camera);
     this.setState(() {
-      imageFile=File(picture!.path);
+      imageFile = File(picture!.path);
       Navigator.of(context).pop();
     });
   }
@@ -87,7 +87,6 @@ class MisFotos extends State<Fotos>{
 
       print("----------->"+Datos.downloadURL);
     });
-
   }
 
   Widget mostrarImagen(){
@@ -111,7 +110,7 @@ class MisFotos extends State<Fotos>{
               icon: Icon(Icons.send_and_archive),
               onPressed: (){
                 nomfoto = (DateFormat.yMd().add_Hms().format(DateTime.now())).toString();
-                reffoto = "uidgo/"+(nomfoto.replaceAll("/", "_").replaceAll(" ","_").replaceAll(":", "_"));
+                reffoto = (nomfoto.replaceAll("/", "_").replaceAll(" ","_").replaceAll(":", "_"));
                 enviarImagen();
                 print("---------------"+nomfoto);
                 print("---------------"+reffoto);
