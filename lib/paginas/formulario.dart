@@ -84,7 +84,7 @@ class MiFormulario extends State<Formulario> {
                   if (validarNombre(controladorNombreComun.text) &&
                       validarNombreCient(controladorNombereCient.text) &&
                       (validarNombre(controladorNombreAutor.text)) &&
-                      Datos.downloadURL != null) {
+                      Datos.downloadURL != "") {
                     dat!.nombreCien = controladorNombereCient.text;
                     dat!.nombreCom = controladorNombreComun.text;
                     dat!.nombreCrd = controladorNombreAutor.text;
@@ -145,7 +145,7 @@ void alertaNombre(BuildContext context) {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text("Alerta"),
-          content: Text("Hay alguna informacion Incorrecta",
+          content: Text("Hay alguna informacion Incorrecta o no ha subido su imagen Correctamente",
               style: TextStyle(fontFamily: "Arial", fontSize: 15)),
           actions: <Widget>[
             ElevatedButton(

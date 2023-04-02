@@ -37,7 +37,7 @@ class MiFormularioEdicion extends State<FormularioEdicion> {
     controladorNombreComun.text = _datos.nombreCom;
     controladorNombreAutor.text = _datos.nombreCrd;
   }
-
+/*
   Future<void> obtenerImagen(BuildContext context) async{
     final picker =  ImagePicker();
     return showDialog(context: context, builder: (BuildContext builder){
@@ -72,7 +72,7 @@ class MiFormularioEdicion extends State<FormularioEdicion> {
       );
     });
   }
-
+*/
   Future<void> actualizarDatos(String uid,String nombre, String nombreCient,
       String nombreCreditos, String foto) async {
     Future.delayed(Duration(seconds: 5), () {
@@ -122,9 +122,7 @@ class MiFormularioEdicion extends State<FormularioEdicion> {
                         child: fotografia()
                     ),
                     Padding(padding: EdgeInsets.all(10.00)),
-                    IconButton(onPressed: (){
-                      obtenerImagen(context);
-                    }, icon: Icon(Icons.edit)),
+                    IconButton(onPressed: null, icon: Icon(Icons.edit)),
                   ],
                 ),
                 Padding(padding: EdgeInsets.all(10.00)),
@@ -219,7 +217,7 @@ class MiFormularioEdicion extends State<FormularioEdicion> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text("Alerta"),
-            content: Text("Hay alguna informacion Incorrecta",
+            content: Text("Hay alguna informacion Incorrecta o no ha subido su imagen Correctamente",
                 style: TextStyle(fontFamily: "Arial", fontSize: 15)),
             actions: <Widget>[
               ElevatedButton(

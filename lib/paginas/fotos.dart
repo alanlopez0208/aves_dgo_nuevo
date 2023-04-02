@@ -24,6 +24,13 @@ class MisFotos extends State<Fotos>{
   Datos? dat= Datos("","","","");
 
 
+  @override
+  void initState() {
+    super.initState();
+    Datos.downloadURL = "";
+  }
+
+
   Future<void> showSelectionDialog(BuildContext context){
     return showDialog(
         context: context,
@@ -131,4 +138,5 @@ class MisFotos extends State<Fotos>{
       ),
     );
   }
+
 }
